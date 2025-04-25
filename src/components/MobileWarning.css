@@ -1,0 +1,64 @@
+.mobile-warning-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mobile-warning-content {
+  background-color: #3a2510;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 90%;
+  text-align: center;
+  border: 2px solid #FFEB3B;
+  box-shadow: 0 0 20px rgba(255, 235, 59, 0.3);
+}
+
+.mobile-warning-content h2 {
+  color: #FFEB3B;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.mobile-warning-content p {
+  margin-bottom: 15px;
+  color: #eee;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.mobile-warning-button {
+  background: linear-gradient(to bottom, #FFEB3B, #FFC107);
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-warning-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-warning-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
