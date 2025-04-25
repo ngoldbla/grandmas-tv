@@ -1,0 +1,109 @@
+/* Global styles for the SGD Retro TV application */
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  height: auto;
+  overflow-y: auto;
+}
+
+body {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: #111;
+  color: #eee;
+  line-height: 1.6;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* App layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  position: relative; /* For absolute positioning of help-text */
+  overflow: hidden;
+}
+
+/* Info box styling has been moved to RetroTV.css */
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Logo styles have been moved to RetroTV.css */
+
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background-color: #222;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .help-text.info-box {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .help-text.info-box {
+    width: 220px;
+  }
+  
+  .info-logo {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  #root {
+    padding: 0.5rem;
+  }
+  
+  .help-text.info-box {
+    width: 200px;
+    font-size: 0.8rem;
+  }
+  
+  .info-logo {
+    max-width: 150px;
+  }
+}

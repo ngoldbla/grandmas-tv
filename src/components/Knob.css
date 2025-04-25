@@ -1,0 +1,222 @@
+.knob-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.knob-container.highlighted {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.knob-container.highlighted::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 2px solid #FFEB3B;
+  animation: pulse 1s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 235, 59, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 235, 59, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 235, 59, 0);
+  }
+}
+
+/* Circular dial with tick marks */
+.knob-dial {
+  position: relative;
+  width: 90px;  /* Slightly smaller to fit 4 knobs vertically */
+  height: 90px; /* Slightly smaller to fit 4 knobs vertically */
+  border-radius: 50%;
+  background: #222;
+  border: 4px solid #444;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.8),
+    inset 0 1px 3px rgba(0,0,0,0.8);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Markers for dial numbers 1-11 */
+.dial-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.dial-tick {
+  position: absolute;
+  top: 2px;
+  width: 3px;
+  height: 14px;
+  background-color: #777;
+  border-radius: 1px;
+  transition: background-color 0.2s ease, height 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dial-marker:hover .dial-tick {
+  background-color: #aaa;
+  height: 16px;
+}
+
+.dial-marker.active .dial-tick {
+  background-color: #FFEB3B;
+  box-shadow: 0 0 5px rgba(255, 235, 59, 0.7);
+  height: 16px;
+}
+
+.dial-number {
+  position: absolute;
+  top: 16px;
+  font-family: monospace;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  /* No default rotation - we'll handle this dynamically in the component */
+  transform-origin: center;
+  padding: 2px 4px 6px;
+  font-weight: bold;
+  text-shadow: 0 0 3px black, 0 0 3px black;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.dial-marker:hover .dial-number {
+  color: #ddd;
+  transform: scale(1.1);
+}
+
+.dial-marker.active .dial-number {
+  color: #FFEB3B;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+/* The actual rotating knob */
+.knob {
+  width: 55px; /* Slightly smaller to match new dial size */
+  height: 55px; /* Slightly smaller to match new dial size */
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3a3a3a, #242424);
+  border: 3px solid #555;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.5),
+    inset 0 1px 2px rgba(255,255,255,0.2);
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease;
+  outline: none; /* Remove outline for default focus state */
+  z-index: 10; /* Higher z-index to ensure knob is above markers */
+}
+
+.knob:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.knob:hover,
+.knob.hovered {
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.8),
+    inset 0 1px 2px rgba(255,255,255,0.3);
+  background: linear-gradient(145deg, #444, #2a2a2a);
+}
+
+/* Focus state for accessibility */
+.knob:focus-visible {
+  box-shadow: 
+    0 0 0 3px #FFEB3B,
+    0 2px 8px rgba(0,0,0,0.8),
+    inset 0 1px 2px rgba(255,255,255,0.3);
+}
+
+/* Knob indicator line */
+.knob-indicator {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 3px;
+  height: 22px;
+  background-color: #fff;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Knob label */
+.knob-label {
+  font-family: monospace;
+  color: #ddd;
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 5px;
+  width: 100%;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Add texture to knobs */
+.knob::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 40% 40%, 
+      rgba(255,255,255,0.1) 0%, 
+      rgba(0,0,0,0) 60%),
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(0,0,0,0.2) 0deg 10deg,
+      rgba(0,0,0,0.1) 10deg
+    );
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Knob ridge texture for better grip indication */
+.knob::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    rgba(0, 0, 0, 0.3) 0deg 15deg,
+    rgba(255, 255, 255, 0.05) 15deg 30deg
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}

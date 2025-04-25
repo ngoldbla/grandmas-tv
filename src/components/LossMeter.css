@@ -1,0 +1,343 @@
+.loss-meter-container {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+}
+
+.loss-meter-container.vertical {
+  height: 300px;
+  max-width: 100px;
+  margin: 10px auto;
+}
+
+.loss-meter-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #ccc;
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.meter-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.question-mark {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: #444;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 5px;
+  cursor: help;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background-color: #000;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: normal;
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  width: max-content;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #000 transparent transparent transparent;
+}
+
+.loss-meter-label.vertical {
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 8px;
+}
+
+.loss-value {
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #5f5;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.loss-meter {
+  width: 100%;
+}
+
+.loss-meter.vertical {
+  display: flex;
+  height: 250px;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.loss-meter-bar {
+  height: 20px;
+  background-color: #222;
+  border-radius: 4px;
+  overflow: visible;
+  border: 1px solid #444;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.loss-meter-bar.vertical {
+  width: 25px;
+  height: 100%;
+  position: relative;
+}
+
+.loss-meter-fill {
+  height: 100%;
+  transition: width 0.3s ease-out;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(255, 95, 95, 0.5);
+}
+
+.loss-meter-fill.vertical {
+  width: 100%;
+  height: 0%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: height 0.3s ease-out;
+}
+
+/* End labels */
+.end-label {
+  position: absolute;
+  font-size: 11px;
+  color: #ccc;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.left-label {
+  left: 0;
+  bottom: -22px;
+  color: #5f5;
+}
+
+.right-label {
+  right: 0;
+  bottom: -22px;
+  color: #f55;
+}
+
+.top-label {
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f55;
+}
+
+.bottom-label {
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #5f5;
+}
+
+/* Meter track */
+.meter-track {
+  height: 20px;
+  width: 100%;
+  border-radius: 3px;
+  position: relative;
+  background-color: #333;
+  overflow: hidden;
+  border: 1px solid #444;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.meter-track.vertical {
+  height: 100%;
+  width: 20px;
+}
+
+/* Track labels */
+.track-label {
+  position: absolute;
+  font-size: 10px;
+  color: #aaa;
+  z-index: 5;
+}
+
+.track-label.left {
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.track-label.right {
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.track-label.top {
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.track-label.bottom {
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Meter fill */
+.meter-fill {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease-out;
+  background: linear-gradient(to right, #5f5, #ff5, #f55);
+}
+
+.meter-fill.vertical {
+  width: 100%;
+  height: 0%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: height 0.3s ease-out;
+  background: linear-gradient(to top, #5f5, #ff5, #f55);
+}
+
+/* Value badge styles */
+.value-badge {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  background-color: transparent;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: monospace;
+  white-space: nowrap;
+  z-index: 10;
+  transition: right 0.3s ease-out;
+  text-shadow: 0 0 2px rgba(0,0,0,0.8);
+}
+
+.value-badge.dark-text {
+  color: black;
+  text-shadow: 0 0 2px rgba(255,255,255,0.8);
+}
+
+.value-badge.vertical {
+  left: 50%;
+  top: auto;
+  bottom: 0;
+  right: auto;
+  transform: translate(-50%, 50%);
+}
+
+.loss-meter-ticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.loss-meter-ticks.vertical {
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 0;
+  margin-top: 0;
+  margin-right: 5px;
+  height: 100%;
+}
+
+.loss-meter-tick {
+  position: relative;
+  text-align: center;
+}
+
+.loss-meter-tick::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4px;
+  background-color: #888;
+}
+
+.loss-meter-tick.empty-tick {
+  color: transparent;
+}
+
+.loss-meter-tick.empty-tick::before {
+  height: 6px;
+}
+
+.vertical .loss-meter-tick {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5px;
+}
+
+.vertical .loss-meter-tick::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: auto;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 1px;
+  background-color: #888;
+}
+
+.vertical .loss-meter-tick.empty-tick::before {
+  width: 6px;
+}

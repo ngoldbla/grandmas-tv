@@ -1,0 +1,466 @@
+.retro-tv {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Stretch to fill height */
+  gap: 0;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.tv-body {
+  width: 900px; /* Wider TV */
+  height: 90vh; /* Match viewport height */
+  background-color: #5a3c1f; /* Wood-like color for retro TV cabinet */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 2px 1px rgba(255, 255, 255, 0.1);
+  border: 1px solid #222;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Wood texture */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 1px);
+  background-size: 15px 15px, 15px 15px, 30px 30px;
+}
+
+.tv-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, #6a4c2f, #5a3c1f);
+  border-radius: 15px 15px 0 0;
+}
+
+/* TV feet */
+.tv-body::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 10%;
+  right: 10%;
+  height: 15px;
+  background: #3a2510;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Left panel styles */
+.tv-left-panel {
+  width: 280px;
+  height: 90vh; /* Match TV height */
+  background-color: #4a3010;
+  border-radius: 15px 0 0 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #222;
+  border-right: 2px solid #2a1a08;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 2px 1px rgba(255, 255, 255, 0.1);
+  /* Wood texture */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 1px);
+  background-size: 15px 15px, 15px 15px, 30px 30px;
+}
+
+.tv-info-section {
+  padding: 15px;
+  background-color: #3a2510;
+  border-radius: 8px;
+  color: #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  border: 1px solid #2a1a08;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.tv-info-section h3 {
+  margin-top: 0;
+  color: #FFEB3B;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
+}
+
+.tv-info-section p {
+  margin-bottom: 12px;
+}
+
+.info-box-logo {
+  margin-top: 15px;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.info-logo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.info-box-logo a:hover .info-logo {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+}
+
+.button-controls.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.drawer-meter-container {
+  padding: 15px;
+  background-color: #3a2510;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 1px solid #2a1a08;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Layout containers */
+.tv-content {
+  display: flex;
+  flex-direction: column; /* Default for vertical layout */
+  flex: 1;
+  height: 100%;
+}
+
+/* Horizontal layout with knobs on the right */
+.horizontal-layout .tv-content {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+/* TV Screen section */
+.tv-screen-section {
+  flex: 1;
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Control sections */
+.tv-controls-section {
+  padding: 20px;
+  display: flex;
+  background-color: #4a3010;
+  border-top: 2px solid #2a1a08;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Positioning for controls based on layout */
+.tv-controls-section.bottom {
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+  border-top: 2px solid #2a1a08;
+  background: linear-gradient(to bottom, #4a3010, #3a2510);
+}
+
+.tv-controls-section.right {
+  flex-direction: column;
+  justify-content: space-between; /* Distribute knobs evenly */
+  width: 150px;
+  padding: 20px;
+  border-left: 2px solid #2a1a08;
+  border-radius: 0 10px 10px 0;
+  border-top: none;
+  background: linear-gradient(to left, #4a3010, #3a2510);
+  /* Wood texture for controls panel */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 10px 10px, 10px 10px;
+}
+
+/* Bottom section for buttons and meter */
+.tv-bottom-section {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2a1a08; /* Darker wood color */
+  border-radius: 0 0 10px 10px;
+  border-top: 2px solid #1a1008;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  /* Wood grain texture */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px;
+}
+
+/* Knobs container */
+.knobs-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* Adjust knobs layout based on position */
+.tv-controls-section.bottom .knobs-container {
+  flex-direction: row;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tv-controls-section.right .knobs-container {
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  height: 100%; /* Fill the entire height */
+  justify-content: space-between; /* Evenly distribute knobs */
+  padding: 10px 0; /* Add some padding to avoid touching the edges */
+}
+
+/* Button controls */
+.button-controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.control-button {
+  background-color: #333;
+  color: #ddd;
+  border: 2px solid #222;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-family: monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 150px;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  /* Retro button style */
+  background: linear-gradient(to bottom, #444, #333);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.control-button:hover:not(:disabled) {
+  background-color: #2a2a2a;
+  transform: translateY(-1px);
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.control-button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.control-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-button.active {
+  background: linear-gradient(to bottom, #0a7, #075);
+  background-color: #0a5;
+  color: white;
+  border-color: #052;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.control-button.danger {
+  background: linear-gradient(to bottom, #b33, #a22);
+  background-color: #a22;
+  color: white;
+  border-color: #800;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.control-button.danger:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #c44, #b33);
+  background-color: #c33;
+}
+
+/* Removed info box styling since it's now in App.css */
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  /* Allow some scaling on medium screens */
+  .tv-body {
+    width: 700px;
+    height: 85vh;
+  }
+  
+  .tv-screen-section {
+    min-height: 55vh;
+  }
+  
+  .tv-left-panel {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Keep TV centered */
+  .retro-tv {
+    justify-content: center;
+  }
+  
+  .tv-body {
+    width: 600px;
+    height: 80vh;
+  }
+  
+  .tv-screen-section {
+    min-height: 50vh;
+  }
+  
+  .tv-left-panel {
+    width: 220px;
+    padding: 15px;
+  }
+  
+  .tv-info-section {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Stack layout - left panel above TV */
+  .retro-tv {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+  
+  .tv-left-panel {
+    width: 90vw;
+    max-width: 700px;
+    min-height: auto;
+    border-radius: 15px 15px 0 0;
+    border-right: 1px solid #222;
+    border-bottom: 2px solid #2a1a08;
+  }
+  
+  .button-controls.vertical {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .drawer-meter-container {
+    width: 90%;
+    margin: 15px auto;
+  }
+  
+  /* Add the meter to the bottom of TV */
+  .tv-body::before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+  }
+  
+  .tv-body {
+    width: 90vw;
+    max-width: 700px;
+    height: auto;
+    min-height: 60vh;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .tv-controls-section.right {
+    flex-direction: row;
+    width: auto;
+    padding: 15px;
+    border-left: none;
+    border-top: 2px solid #222;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .tv-controls-section.right .knobs-container {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .tv-screen-section {
+    min-height: 40vh;
+  }
+  
+  .control-button {
+    min-width: 120px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tv-body {
+    width: 95vw;
+    padding: 10px;
+  }
+  
+  .tv-left-panel {
+    width: 95vw;
+    padding: 10px;
+  }
+  
+  .knobs-container {
+    flex-direction: row;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+  }
+  
+  .button-controls, .button-controls.vertical {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .control-button {
+    min-width: 100px;
+    flex: 1 1 40%;
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+  
+  .tv-screen-section {
+    min-height: 35vh;
+  }
+}

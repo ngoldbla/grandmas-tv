@@ -1,0 +1,172 @@
+.tv-screen-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* 1:1 ratio to make it taller (as tall as 4 knobs) */
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 20px solid #222;
+  box-shadow: 
+    0 0 0 5px #111,
+    0 5px 15px rgba(0, 0, 0, 0.7),
+    inset 0 0 15px rgba(0, 0, 0, 0.5);
+  /* Retro bezel */
+  background: linear-gradient(135deg, #333, #222);
+  /* Curved glass effect */
+  transform: perspective(1000px) rotateX(2deg);
+}
+
+.tv-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  /* Add CRT-like glow and scan lines for more authentic look */
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  /* Enhanced TV scan lines for retro effect (CSS-only for better performance) */
+  background-image: 
+    /* Horizontal scan lines */
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0.2) 1px,
+      rgba(0, 0, 0, 0.2) 2px
+    ),
+    /* Vertical noise lines - adds to the static effect */
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      rgba(255, 255, 255, 0) 1px,
+      rgba(255, 255, 255, 0) 3px
+    ),
+    /* Random noise pattern using a CSS gradient - static effect without JS */
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+}
+
+.target-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-out;
+  position: relative;
+  z-index: 2; /* Ensures the image is behind the static overlay */
+}
+
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: normal; /* Changed from screen for more realistic static */
+  z-index: 5;
+}
+
+/* CSS-based static effect classes that can be applied based on loss level */
+.high-static::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise"/><feColorMatrix type="saturate" values="0"/></filter><rect width="500" height="500" filter="url(%23noise)" opacity="0.3"/></svg>');
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.medium-static::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise"/><feColorMatrix type="saturate" values="0"/></filter><rect width="500" height="500" filter="url(%23noise)" opacity="0.2"/></svg>');
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.low-static::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise"/><feColorMatrix type="saturate" values="0"/></filter><rect width="500" height="500" filter="url(%23noise)" opacity="0.1"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.perfect-tuning-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease-out;
+  z-index: 100;
+}
+
+.perfect-tuning-message {
+  background-color: rgba(255, 223, 0, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 223, 0, 0.7);
+  animation: pulse 1.5s infinite;
+  max-width: 80%;
+}
+
+.perfect-tuning-message h2 {
+  margin: 0 0 10px 0;
+  color: #000;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+}
+
+.perfect-tuning-message p {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.perfect-tuning-message .small-text {
+  font-size: 0.7rem;
+  font-style: italic;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
